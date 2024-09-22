@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked Games Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Unblocked Games Search</h1>
+        <input type="text" id="search" placeholder="Search for games...">
+        <ul id="gameList"></ul>
+    </div>
+    <script src="script.js"></script>
+<input type="text" id="search" placeholder="Search for games...">
+ </body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+li:hover {
+    background: #e0e0e0;
+}
+
+const games = [
+    { name: "Slither.io", url: "https://slither.io/" },
+    { name: "Among Us", url: "https://www.playamongus.net/" },
+    { name: "Krunker.io", url: "https://krunker.io/" },
+    { name: "Minecraft Classic", url: "https://classic.minecraft.net/" },
+    { name: "Happy Wheels", url: "https://totaljerkface.com/happy_wheels.tjf" }
+];
+
+const searchInput = document.getElementById('search');
+const gameList = document.getElementById('gameList');
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    gameList.innerHTML = '';
+    
+    const filteredGames = games.filter(game => game.name.toLowerCase().includes(query));
+    
+    filteredGames.forEach(game => {
+        const li = document.createElement('li');
+        li.textContent = game.name;
+        li.onclick = () => window.open(game.url, '_blank');
+        gameList.appendChild(li);
+    });
+});
